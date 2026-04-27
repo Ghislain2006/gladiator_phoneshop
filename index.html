@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GLADIATOR PHONESHOP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f1f5f9;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: #0f172a;
+      color: white;
+    }
+
+    .navbar h1 {
+      margin: 0;
+    }
+
+    .nav-links a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    /* HERO */
+    .hero {
+      display: flex;
+      height:200px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 60px;
+      background: linear-gradient(to right, #2563eb, #1e3a8a);
+      color: white;
+    }
+
+    .hero-text h2 {
+      font-size: 40px;
+    }
+
+    .hero button {
+      padding: 12px 20px;
+      border: none;
+      background: white;
+      color: #2563eb;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .hero video {
+      width: 175px;
+      border-radius: 20px;
+    }
+
+    /* PRODUCTS */
+    .products {
+      padding: 40px;
+    }
+
+    .products h2 {
+      text-align: center;
+    }
+
+    .product-grid {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 15px;
+      padding: 15px;
+      width: 200px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .product-card h3 {
+      margin: 10px 0;
+    }
+
+    .product-card button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .product-card a {
+      display: flex;
+      position: right;
+      color: #2563eb;
+      font-size: 10px;
+      text-decoration: none;
+      transform: translateX(150px);
+      cursor: pointer;
+    }
+
+    /* PROMO */
+    .promo {
+      padding: 40px;
+      text-align: center;
+    }
+
+    .promo-box {
+      background: #2563eb;
+      color: white;
+      padding: 30px;
+      border-radius: 15px;
+      margin: 20px auto;
+      width: 60%;
+    }
+
+    /* CONTACT */
+    .contact {
+      padding: 40px;
+      text-align: center;
+    }
+
+    .contact form {
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      margin: auto;
+      gap: 10px;
+    }
+
+    .contact input, .contact textarea {
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+
+    .contact button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #25D366;
+      font-weight: bold;
+    }
+
+    .whatsapp-btn:hover {
+      color: #1ebé5d;
+      transform: scale(1.05);
+      transition:0.2s;
+    }
+    
+    .whatsapp-btn i {
+      font-size: 40px;
+    }
+    /* FOOTER */
+    .footer {
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+    }
+
+    /*Panier*/
+    .floating-cart {
+      position: fixed;
+      right: 10px;
+      bottom: 57.5px;
+      width: 200px;
+      max-height: 400px;
+      overflow-y: auto;
+      background: white;
+      border-radius: 15px;
+      padding: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+
+    .floating-cart h3 {
+      margin-top: 0;
+    }
+
+    .floating-cart ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .floating-cart li {
+      font-size: 14px;
+      border-bottom: 1px solid #ddd;
+      padding: 5px 0;
+    }
+
+    #orderBtn {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      background: #25D366;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .delete-btn {
+      background: white;
+      color: black;
+      border: none;
+      padding: 3px 6px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 10px;
+    }    
+
+    .delete-btn:hover {
+      transform: scale(1.1);
+      transition: 0.2s;
+    }
+    
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0f172a;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 10px;
+      opacity: 0;
+      transition: 0.3s;
+      z-index: 9999;
+    }
+
+    .toast.show {
+      opacity: 1;
+      bottom: 40px;
+    }    
+
+  /* TABLET */
+  @media (max-width: 768px) {
+
+    .hero {
+      flex-direction: column;
+      text-align: center;
+      padding: 30px;
+      height: auto;
+    }
+
+    .hero-content h2 {
+      font-size: 24px;
+    }
+    
+    .bg-video {
+      object-fit: cover;
+    }
+    .navbar {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .product-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .promo-box {
+      width: 90%;
+    }
+
+    .contact form {
+      width: 90%;
+    }
+  }
+
+  /* MOBILE */
+  @media (max-width: 480px) {
+
+    .hero-content h2 {
+      font-size: 20px;
+    }
+
+    .hero button {
+      width: 100%;
+    }
+
+    .product-card {
+      width: 90%;
+    }
+
+    .navbar h1 {
+      font-size: 20px;
+    }
+  }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <h1>GLADIATOR PHONESHOP</h1>
+    <div class="nav-links">
+      <a href="#accueil">Accueil</a>
+      <a href="#telephones">Téléphones</a>
+      <a href="#promotions">Promotions</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section id="accueil" class="hero">
+    <div class="hero-text">
+      <h2>Les meilleurs smartphones au meilleur prix</h2>
+      <button>Acheter maintenant</button>
+    </div>
+    <video autoplay muted loop class="hero-video">
+      <source src="video_camon_50.mp4" type="video/mp4">
+      Votre navigateur ne supporte pas la vidéo.
+    </video>
+
+  </section>
+
+  <!-- PRODUITS -->
+  <section class="products">
+    <h2>Produits populaires</h2>
+    <div class="product-grid">
+
+      <div class="product-card">
+        <img src="image_camon_50pro.png" alt="">
+        <h3><b>TECNO CAMON 50pro</b></h3>
+        <p>200 000 FCFA</p>
+        <a href="https://www.tecno-mobile.com/bf/telephones/product-detail/product/camon-50-pro/">Détails...</a>
+        <br>
+        <button class="add-to-cart" data-name="TECNO CAMON 50pro" data-price="200000">
+          Ajouter
+        </button>
+      </div>
+
+      <div class="product-card">
+        <img src="image_camon_50.png" alt="">
+        <h3><b>TECNO CAMON 50</b></h3>
+        <p>190 000 FCFA</p>
+        <a href="https://www.tecno-mobile.com/phones/product-detail/product/camon-50/">Détails...</a>
+        <br>
+        <button class="add-to-cart" data-name="TECNO CAMON 50" data-price="190000">
+          Ajouter
+        </button>
+      </div>
+
+      <div class="product-card">
+        <img src="image_spark_50.png" alt="">
+        <h3><b>TECNO SPARK 50</b></h3>
+        <p>190 000 FCFA</p>
+        <a href="https://www.tecno-mobile.com/phones/product-detail/product/spark-50/">Détails...</a>
+        <br>
+        <button class="add-to-cart" data-name="TECNO SPARK 50" data-price="190000">
+          Ajouter
+        </button>
+      </div>
+
+
+      <div class="product-card">
+        <img src="image_smart_20.png" alt="">
+        <h3>INFINIX SMART 20</h3>
+        <p>180 000 FCFA</p>
+        <a href="#">Détails...</a>
+        <br>
+        <button class="add-to-cart" data-name="INFINIX SMART 20" data-price="180000">
+          Ajouter
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!--Téléphones-->
+  <section id="telephones" class="products">
+    <h2>Tous nos téléphones</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="image_itel_A06.png" alt="">
+        <h3>ITEL A06</h3>
+        <p>600 000 FCFA</p>
+        <a href="https://www.itel-life.com/products/phone/a-series/a06">Détails...</a>
+        <br>
+        <button class="add-to-cart" data-name="ITEL A06" data-price="450000">
+          Ajouter
+        </button>
+      </div>
+
+      <div class="product-card">
+        <img src="image_itel_A100C.png" alt="">
+        <h3>ITEL A100C</h3>
+        <p>600 000 FCFA</p>
+        <a href="https://www.itel-life.com/products/phone/a-series/a100c">Détails...</a>
+        <br>
+        <button class="add-to-cart" data-name="ITEL A100C" data-price="450000">
+          Ajouter
+        </button>
+      </div>
+
+      <div class="product-card">
+        <img src="image_galaxy_A06.png" alt="">
+        <h3>SAMSUNG GALAXY A06</h3>
+        <p>220 000 FCFA</p>
+        <a href="https://www.samsung.com/africa_fr/smartphones/galaxy-a/galaxy-a06-light-blue-128gb-sm-a065flbgafb/?msockid=0382e2048f7368172699f4b88e526936">Détails...</a>
+        <br>
+        <button class="add-to-cart" data-name="SAMSUNG GALAXY A06" data-price="450000">
+          Ajouter
+        </button>
+      </div>
+
+      <div class="product-card">
+        <img src="image_galaxy_A07.png" alt="">
+        <h3>SAMSUNG GALAXY A07</h3>
+        <p>150 000 FCFA</p>
+        <a href="https://www.samsung.com/africa_fr/smartphones/galaxy-a/galaxy-a07-black-128gb-sm-a075fzkhafb/?msockid=0382e2048f7368172699f4b88e526936">Détails...</a>
+        <br>
+        <button class="add-to-cart" data-name="SAMSUNG GALAXY A07" data-price="450000">
+          Ajouter
+        </button>
+      </div>
+
+      <div class="product-card">
+        <img src="image_galaxy_A17.png" alt="">
+        <h3>SAMSUNG GALAXY A17</h3>
+        <p>150 000 FCFA</p>
+        <a href="https://www.samsung.com/fr/smartphones/galaxy-a/galaxy-a17-5g-blue-128gb-sm-a176bzbaeub/?msockid=0382e2048f7368172699f4b88e526936">Détails...</a>
+        <br>
+        <button class="add-to-cart" data-name="SAMSUNG GALAXY A17" data-price="450000">
+          Ajouter
+        </button>
+      </div>
+
+      <div class="product-card">
+        <img src="image_pop_20.png" alt="">
+        <h3>TECNO POP 20</h3>
+        <p>150 000 FCFA</p>
+        <a href="https://www.tecno-mobile.com/phones/product-detail/product/pop-20/">Détails...</a>
+        <br>
+        <button class="add-to-cart" data-name="TECNO POP 20" data-price="450000">
+          Ajouter
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!--Promotions-->
+  <section id="promotions" class="promo">
+    <h2>Promotions </h2>
+    <div class="promo-box">
+      <h3>Acune promotion en cours</h3>
+      <p>Profitez des meilleures offres du moment</p>
+    </div>
+  </section>
+
+  <!--Contacts-->
+  <section id="contact" class="contact">
+    <h2>Contactez-nous</h2>
+
+    <form id="contactform" onsubmit="alert('Mersaage envoyé'); return false;">
+      <input type="text" placeholder="Votre nom" required>
+      <input type="email" placeholder="Votre email" required>
+      <textarea placeholder="Votre message"></textarea>
+      <button type="submit">Envoyer</button>
+    </form>
+
+    <p>Ou contactez-nous sur WhatsApp</p>
+    <div class="whatsapp-link">
+      <a href="https://wa.me/2290157411323?text=Bonjour%20je%20veux%20acheter%20un%20téléphone" class="whatsapp-btn" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>© 2026 GLADIATOR PHONESHOP - Tous droits réservés</p>
+  </div>
+
+  <!--Panier-->
+  <div class="floating-cart" id="floating-cart">
+    <h3><i class="fa-solid fa-cart-plus"></i></h3>
+    <ul id="cart-items"></ul>
+    <p>Total : <span id="cart-total">0</span> FCFA</p>
+    <button id="orderBtn">Commander</button>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  let cart = [];
+
+  const buttons = document.querySelectorAll(".add-to-cart");
+  const cartItems = document.getElementById("cart-items");
+  const cartTotal = document.getElementById("cart-total");
+  const cartCount = document.getElementById("cart-count");
+
+  function updateCart() {
+    cartItems.innerHTML = "";
+    let total = 0;
+
+    cart.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = item.name + " - " + item.price + " FCFA";
+      cartItems.appendChild(li);
+
+      total += Number(item.price);
+    });
+
+    cartTotal.textContent = total;
+
+    if (cartCount) {
+      cartCount.textContent = cart.length;
+    }
+  }
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      const name = button.dataset.name;
+      const price = button.dataset.price;
+
+      console.log("CLICK OK"); // debug
+
+      cart.push({ name, price });
+
+      showToast(name + " Ajouté au panier");
+
+      updateCart();
+      function updateCart() {
+        cartItems.innerHTML = "";
+        let total = 0;
+
+        cart.forEach((item, index) => {
+          const li = document.createElement("li");
+
+          li.innerHTML = `
+            ${item.name} - ${item.price} FCFA
+            <button class="delete-btn" data-index="${index}"><i class="fa-solid fa-delete-left" style="color: hsl(0, 100%, 57%);"></i></button>
+          `;
+
+          cartItems.appendChild(li);
+          total += Number(item.price);
+        });
+
+        cartTotal.textContent = total;
+
+        attachDeleteEvents();
+        function attachDeleteEvents() {
+          const deleteButtons = document.querySelectorAll(".delete-btn");
+
+          deleteButtons.forEach(btn => {
+            btn.addEventListener("click", () => {
+              const index = btn.dataset.index;
+
+              cart.splice(index, 1); // supprime l’élément
+              
+              showToast("Produit supprimé");
+
+              updateCart(); // refresh panier
+            });
+          });
+        }
+      }
+    });
+  });
+
+  // COMMANDER VIA WHATSAPP
+   orderBtn.addEventListener("click", () => {
+
+    if (cart.length === 0) {
+      showToast("Votre panier est vide !");
+      return;
+    }
+
+    let message = "Bonjour, je veux commander :\n\n";
+
+    cart.forEach(item => {
+      message += "- " + item.name + " : " + item.price + " FCFA\n";
+    });
+
+    message += "\nTotal : " + cartTotal.textContent + " FCFA";
+
+    const phone = "2290157411323"; // remplace par ton numéro
+    const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+
+    window.open(url, "_blank");
+
+  });
+
+  //Contact
+  document.addEventListener("DOMContentLoaded", () => {
+
+    const form = document.getElementById("contactform");
+
+    if (!form) {
+      console.log("Formulaire contact introuvable");
+      return;
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+
+      if (typeof showToast === "function") {
+        showToast("Merci " + name + " , message envoyé !");
+      } else {
+        showToast("Message envoyé !");
+      }
+
+      form.reset();
+    });
+
+  });      
+
+  //Notifications
+  function showToast(message) {
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 2000);
+  }  
+
+});
+</script>
+
+</body>
+</html>
