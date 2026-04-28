@@ -560,7 +560,7 @@
   <section id="contact" class="contact">
     <h2>Contactez-nous</h2>
 
-    <form id="contactform">
+    <form id="contact-form" onsubmit=showToast("Message envoyé"), return false;>
       <input type="text" placeholder="Votre nom" required>
       <input type="email" placeholder="Votre email" required>
       <textarea placeholder="Votre message"></textarea>
@@ -628,7 +628,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       cart.push({ name, price });
 
-      showToast(name + " Ajouté au panier");
+      showToast(name + " ajouté au panier");
 
       updateCart();
       function updateCart() {
@@ -695,7 +695,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //Contact
   document.addEventListener("DOMContentLoaded", () => {
 
-    const form = document.getElementById("contactform");
+    const form = document.getElementById("contact-form");
 
     if (!form) {
       console.log("Formulaire contact introuvable");
