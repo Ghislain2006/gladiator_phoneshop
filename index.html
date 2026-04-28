@@ -7,14 +7,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    * {
+      outline: 1px solid red;
+    }
+    
     html {
       scroll-behavior: smooth;
     }
+    
     body {
       max-width: 100%;
       margin: 0;
+      overflow-x: hidden;
       font-family: 'Poppins', sans-serif;
       background-color: #f1f5f9;
+    }
+
+    section, .products, .hero, .navbar {
+      max-width: 100%;
     }
 
     /* NAVBAR */
@@ -123,6 +133,7 @@
     }
     .product-card a {
       display: flex;
+      flex-wrap: wrap;
       position: right;
       color: #2563eb;
       font-size: 10px;
@@ -325,7 +336,6 @@
     .hero-content h2 {
       font-size: 5px;
       font-family: 'Poppins', sans-serif;
-      font-size: 5px;
     }
 
     .hero button {
@@ -337,6 +347,11 @@
       object-fit: cover;
     }
 
+    .product-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+    
     .product-card {
       width: 90%;
     }
